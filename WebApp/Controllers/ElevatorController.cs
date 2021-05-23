@@ -40,10 +40,11 @@ namespace WebApp.Controllers
 		/// Requirement: A person requests that they be brought to a floor.
 		/// </remarks>
 		[HttpPost]
-		[Route("~/elevator/call")]
+		[Route("~/elevator/call/{floor:int}")]
 		public async Task CallElevatorTo(int floor)
 		{
 			using var log = this.logger.BeginScope(nameof(CallElevatorTo));
+			await Task.CompletedTask.ConfigureAwait(false);
 		}
 
 		/// <summary>
@@ -56,7 +57,7 @@ namespace WebApp.Controllers
 		public async Task<int> GetNextFloor()
 		{
 			using var log = this.logger.BeginScope(nameof(GetNextFloor));
-			return 1;
+			return await Task.FromResult(1).ConfigureAwait(false);
 		}
 
 		/// <summary>

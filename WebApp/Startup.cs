@@ -6,6 +6,7 @@ namespace WebApp
 {
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.AspNetCore.Hosting;
+	using Microsoft.EntityFrameworkCore;
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Hosting;
@@ -15,6 +16,8 @@ namespace WebApp
 	using System.Diagnostics.CodeAnalysis;
 	using System.IO;
 	using System.Reflection;
+
+	using WebApp.Data;
 
 	/// <summary>
 	/// The startup class.
@@ -66,9 +69,9 @@ namespace WebApp
 		/// This method gets called by the runtime. Use this method to add services to the container.
 		/// </remarks>
 		[SuppressMessage("Usage", "SecurityIntelliSenseCS:MS Security rules violation", Justification = "Path is not user input.")]
-		public void ConfigureServices(IServiceCollection services)
-		{
+		public void ConfigureServices(IServiceCollection services) =>
 			_ = services
+				.AddDbContext<ElevatorDbContext>(options => options.UseSqlite(this.Configuration.GetConnectionString("Sqlite")))
 				.AddSwaggerGen(
 					c =>
 					{
@@ -82,6 +85,5 @@ namespace WebApp
 						}
 					})
 				.AddControllers();
-		}
 	}
 }
