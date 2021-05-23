@@ -22,3 +22,6 @@ Though the solution calls for port 8080 your port may be different.
 
 NOTE: My system cannot run on 8080 as I have another service there so I have let Visual Studio determine the port.
 
+## Notes
+
+Presumably the button on each floor and the buttons in the cars will know which floor they are associated with. Given this assumption, each button would pass an argument to our API with the floor number that is requested. Due to this, we don't need to have two methods for calling the car as they do the same thing.

@@ -31,16 +31,19 @@ namespace WebApp.Controllers
 		public ElevatorController(ILogger<ElevatorController> logger) => this.logger = logger;
 
 		/// <summary>
-		/// Calls for the elevator to be sent to the person's current floor.
+		/// Calls for the elevator to be sent to the specified floor number. The elevator may stop
+		/// along the way depending on its position.
 		/// </summary>
-		/// <param name="floor">The floor.</param>
-		/// <remarks>Requirement: A person requests an elevator be sent to their current floor.</remarks>
+		/// <param name="floor">The floor number.</param>
+		/// <remarks>
+		/// Requirement: A person requests an elevator be sent to their current floor.
+		/// Requirement: A person requests that they be brought to a floor.
+		/// </remarks>
 		[HttpPost]
 		[Route("~/elevator/call")]
 		public async Task CallElevatorTo(int floor)
 		{
 			using var log = this.logger.BeginScope(nameof(CallElevatorTo));
-			throw new NotImplementedException();
 		}
 
 		/// <summary>
@@ -53,7 +56,7 @@ namespace WebApp.Controllers
 		public async Task<int> GetNextFloor()
 		{
 			using var log = this.logger.BeginScope(nameof(GetNextFloor));
-			throw new NotImplementedException();
+			return 1;
 		}
 
 		/// <summary>
@@ -66,23 +69,12 @@ namespace WebApp.Controllers
 		/// </remarks>
 		[HttpGet]
 		[Route("~/elevator/queue")]
-		public IAsyncEnumerable<int> GetRequestedFloors()
+		public async IAsyncEnumerable<int> GetRequestedFloors()
 		{
 			using var log = this.logger.BeginScope(nameof(GetRequestedFloors));
-			throw new NotImplementedException();
-		}
 
-		/// <summary>
-		/// Sends the elevator to the specified floor.
-		/// </summary>
-		/// <param name="floor">The floor.</param>
-		/// <remarks>Requirement: A person requests that they be brought to a floor.</remarks>
-		[HttpPost]
-		[Route("~/elevator/send")]
-		public async Task SendElevator(int floor)
-		{
-			using var log = this.logger.BeginScope(nameof(SendElevator));
-			throw new NotImplementedException();
+			await Task.CompletedTask.ConfigureAwait(false);
+			yield break;
 		}
 	}
 }
