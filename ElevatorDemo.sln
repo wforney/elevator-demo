@@ -14,8 +14,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp.Tests", "WebApp.Tests\WebApp.Tests.csproj", "{4BAECFAF-BD3B-49AD-BCF1-2C47FCC84E95}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppTests", "WebAppTests\WebAppTests.csproj", "{C6C1FB30-9DDD-44BF-B915-59C0BE2EEA60}"
 EndProject
 Global
@@ -28,10 +26,6 @@ Global
 		{A4A4F4AA-F0D2-478A-BA5C-34CB601BC5DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4A4F4AA-F0D2-478A-BA5C-34CB601BC5DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4A4F4AA-F0D2-478A-BA5C-34CB601BC5DD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4BAECFAF-BD3B-49AD-BCF1-2C47FCC84E95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4BAECFAF-BD3B-49AD-BCF1-2C47FCC84E95}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4BAECFAF-BD3B-49AD-BCF1-2C47FCC84E95}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4BAECFAF-BD3B-49AD-BCF1-2C47FCC84E95}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C6C1FB30-9DDD-44BF-B915-59C0BE2EEA60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C6C1FB30-9DDD-44BF-B915-59C0BE2EEA60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6C1FB30-9DDD-44BF-B915-59C0BE2EEA60}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -10,25 +10,25 @@ namespace WebApp.Controllers.Tests
 		[TestMethod()]
 		public void ElevatorControllerTest()
 		{
-			Assert.Fail();
+			Assert.Inconclusive();
 		}
 
 		[TestMethod()]
 		public void CallElevatorToTest()
 		{
-			Assert.Fail();
+			Assert.Inconclusive();
 		}
 
 		[TestMethod()]
 		public void GetNextFloorTest()
 		{
-			Assert.Fail();
+			Assert.Inconclusive();
 		}
 
 		[TestMethod()]
 		public void GetRequestedFloorsTest()
 		{
-			Assert.Fail();
+			Assert.Inconclusive();
 		}
 	}
 }
