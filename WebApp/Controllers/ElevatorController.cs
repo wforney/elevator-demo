@@ -14,13 +14,13 @@ namespace WebApp.Controllers
 	using System.Threading.Tasks;
 
 	using WebApp.Data;
+	using WebApp.Models;
 	using WebApp.Properties;
+	using WebApp.Services;
 
 	/// <summary>
-	/// The elevator controller class. Implements the <see cref="ControllerBase" />. Implements the
-	/// <see cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
+	/// The elevator controller class. Implements the <see cref="ControllerBase" />.
 	/// </summary>
-	/// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
 	/// <seealso cref="ControllerBase" />
 	[ApiController]
 	[Route("[controller]")]
@@ -38,6 +38,11 @@ namespace WebApp.Controllers
 		private readonly ElevatorDbContext elevatorDbContext;
 
 		/// <summary>
+		/// The elevator service
+		/// </summary>
+		private readonly IElevatorService elevatorService;
+
+		/// <summary>
 		/// The logger
 		/// </summary>
 		private readonly ILogger<ElevatorController> logger;
@@ -46,10 +51,12 @@ namespace WebApp.Controllers
 		/// Initializes a new instance of the <see cref="ElevatorController" /> class.
 		/// </summary>
 		/// <param name="elevatorDbContext">The elevator database context.</param>
+		/// <param name="elevatorService">The elevator service.</param>
 		/// <param name="logger">The logger.</param>
-		public ElevatorController(ElevatorDbContext elevatorDbContext, ILogger<ElevatorController> logger)
+		public ElevatorController(ElevatorDbContext elevatorDbContext, IElevatorService elevatorService, ILogger<ElevatorController> logger)
 		{
 			this.elevatorDbContext = elevatorDbContext;
+			this.elevatorService = elevatorService;
 			this.logger = logger;
 		}
 
@@ -111,12 +118,13 @@ namespace WebApp.Controllers
 				}
 
 				// Save the request for the specified floor to the database.
-				this.elevatorDbContext.ElevatorDestinations.Add(new Models.ElevatorDestination { ElevatorId = ElevatorId, FloorNumber = floor });
+				this.elevatorDbContext.ElevatorDestinations.Add(new ElevatorDestination { ElevatorId = ElevatorId, FloorNumber = floor });
 				await this.elevatorDbContext.SaveChangesAsync().ConfigureAwait(false);
 
 				this.logger.LogInformation("Floor {floor} requested.", floor);
 
-				// TODO: Implement calling elevator mechanism to start the car moving toward the destination.
+				// Calls the third party wrapper to actually do the moving.
+				await this.elevatorService.MoveToFloor(ElevatorId, floor).ConfigureAwait(false);
 			}
 		}
 
@@ -142,7 +150,7 @@ namespace WebApp.Controllers
 				using var log = this.logger.BeginScope(nameof(RemoveRedundantDestinations));
 
 				// NOTE: I really don't like how EF handles deletes like this. There is a way to
-				//       make it not query first, but I'll leave that for later.
+				// make it not query first, but I'll leave that for later.
 				var redundantDestinations = await this.elevatorDbContext.ElevatorDestinations
 					.Where(d => d.ElevatorId == ElevatorId)
 					.Where(d => d.FloorNumber == floor)

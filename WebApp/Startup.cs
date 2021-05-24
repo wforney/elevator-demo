@@ -18,6 +18,7 @@ namespace WebApp
 	using System.Reflection;
 
 	using WebApp.Data;
+	using WebApp.Services;
 
 	/// <summary>
 	/// The startup class.
@@ -72,6 +73,7 @@ namespace WebApp
 		public void ConfigureServices(IServiceCollection services) =>
 			_ = services
 				.AddDbContext<ElevatorDbContext>(options => options.UseSqlite(this.Configuration.GetConnectionString("Sqlite")))
+				.AddScoped<IElevatorService, ElevatorService>()
 				.AddSwaggerGen(
 					c =>
 					{
