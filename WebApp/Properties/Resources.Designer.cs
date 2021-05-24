@@ -59,5 +59,14 @@ namespace WebApp.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The floor number cannot be less than one..
+        /// </summary>
+        internal static string FloorCannotBeLessThanOne {
+            get {
+                return ResourceManager.GetString("FloorCannotBeLessThanOne", resourceCulture);
+            }
+        }
     }
 }
