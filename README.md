@@ -25,3 +25,5 @@ NOTE: My system cannot run on 8080 as I have another service there so I have let
 ## Notes
 
 Presumably the button on each floor and the buttons in the cars will know which floor they are associated with. Given this assumption, each button would pass an argument to our API with the floor number that is requested. Due to this, we don't need to have two methods for calling the car as they do the same thing.
+
+The implementation for next floor assumes that the service doing the actual moving of the elevator will remove entries from the destination list when it arrives at the destination.
